@@ -4,6 +4,17 @@
     https://api.github.com/users/<your name>
 */
 
+import axios from 'axios';
+  axios
+  .get('https://api.github.com/users/claudiudts')
+  .then((futureData)=>{
+      const gitInfo = futureData.data;
+      cards.appendChild(cardMaker(gitInfo));
+  })
+  .catch((err)=>{
+    // debugger;
+  })
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -28,7 +39,19 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['tetondan','dustinmyers','justsml','luishrd','bigknell'];
+
+followersArray.forEach((each)=>{
+  axios
+  .get('https://api.github.com/users/' + each)
+  .then((futureData)=>{
+    const gitInfo = futureData.data;
+    cards.appendChild(cardMaker(gitInfo));
+  })
+  .catch((err)=>{
+    // debugger;
+  })
+});
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -58,3 +81,5 @@ const followersArray = [];
     luishrd
     bigknell
 */
+
+
